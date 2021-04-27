@@ -1,4 +1,13 @@
 
+## how to build
+
+- install tailwind css
+- update webpack mix.js with browsersync
+
+install vue
+- composer require laravel/ui
+- php artisan ui vue
+
 ## how to run
 
 npm i
