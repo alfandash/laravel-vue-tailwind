@@ -10,6 +10,8 @@
     <script src="/js/app.js" defer></script>
 </head>
 <body class="bg-blue-500">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat commodi eos deleniti. Magnam laborum doloremque earum veritatis, ipsam, nihil consequatur molestias delectus dolore consectetur culpa voluptas fugit. Vel, voluptas laborum.
+    <div id="app" class="flex justify-center pt-16">
+      <weather-app></weather-app>
+    </div>
 </body>
 </html>
