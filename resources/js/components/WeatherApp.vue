@@ -65,9 +65,17 @@
         mounted() {
             this.fetchData()
         },
+        data() {
+          return {
+            location: {
+              name: 'Jakarta, Indonesia',
+              location_id: 208971,
+            }
+          }
+        },
         methods: {
           fetchData() {
-            fetch('/api/weather/')
+            fetch(`/api/weather?location=${this.location.location_id}`)
               .then(response => response.json())
               .then(data => {
                 console.log(data)
