@@ -33,3 +33,14 @@ Route::get('weather', function () {
 
   return $response->json();
 });
+
+
+Route::get('weather/forecasts/daily/5day', function() {
+
+  $apiKey = config('services.accuweather.key');
+  $locationId = request('location');
+
+  $response = Zttp::get("http://dataservice.accuweather.com/forecasts/v1/daily/5day/$locationId?apikey=$apiKey&metric=true", '');
+
+  return $response->json();
+});
