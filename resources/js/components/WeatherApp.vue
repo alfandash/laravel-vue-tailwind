@@ -24,35 +24,27 @@
           </div>
         </div>
         <div>
-          icon
+          <img :src=currentTemprature.icon alt="current-temprature" class="h-16">
         </div>
       </div> <!-- end current weater -->
 
       <div class="future-weather text-sm bg-gray-800 px-6 py-8 overflow-hidden">
-        <div class="flex items-center">
+        <div
+          v-for="(day, index) in forecasts"
+          :key="day.Date"
+          class="flex items-center"
+          :class="{ 'mt-8' : index > 0}"
+        >
           <div class="w-1/6 text-lg text-gray-200">
             MON
           </div>
           <div class="w-4/6 px-4 flex items-center">
-            <div>icon</div>
-            <div class="ml-3"> Cloudy with a chance of showers</div>
+            <img :src=weatherIcon(day.Day.Icon) alt="current-temprature" class="h-full">
+            <div class="ml-3">{{day.Day.IconPhrase}}</div>
           </div>
           <div class="w-1/6 text-right">
-            <div>5C</div>
-            <div>-2C</div>
-          </div>
-        </div>
-        <div class="flex items-center mt-8">
-          <div class="w-1/6 text-lg text-gray-200">
-            MON
-          </div>
-          <div class="w-4/6 px-4 flex items-center">
-            <div>icon</div>
-            <div class="ml-3"> Cloudy with a chance of showers</div>
-          </div>
-          <div class="w-1/6 text-right">
-            <div>5C</div>
-            <div>-2C</div>
+            <div>{{day.Temperature.Maximum.Value}} {{day.Temperature.Maximum.Unit}}</div>
+            <div>{{day.Temperature.Minimum.Value}} {{day.Temperature.Minimum.Unit}}</div>
           </div>
         </div>
       </div> <!-- end future weather -->
@@ -78,7 +70,8 @@
             location: {
               name: 'Jakarta, Indonesia',
               location_id: 208971,
-            }
+            },
+            forecasts: []
           }
         },
         methods: {
@@ -93,9 +86,22 @@
                 this.currentTemprature.feels = data[0].RealFeelTemperature.Metric.Value;
                 this.currentTemprature.feelsUnit = data[0].RealFeelTemperature.Metric.Unit;
                 this.currentTemprature.summary = data[0].WeatherText;
+                this.currentTemprature.icon = this.weatherIcon(data[0].WeatherIcon)
+              })
+              .finally(() => {
+                fetch(`/api/weather/forecasts/daily/5day?location=${this.location.location_id}`)
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data)
+
+                    this.forecasts = data.DailyForecasts
+                  })
               })
 
             // fetch('/api/users/1')
+          },
+          weatherIcon(stringIcon) {
+            return '/icons/weather-icon/icon' + stringIcon + '.png';
           }
         }
     }
