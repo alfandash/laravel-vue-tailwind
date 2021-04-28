@@ -67,11 +67,13 @@
         },
         methods: {
           fetchData() {
-            fetch('https://cors-anywhere.herokuapp.com/http://dataservice.accuweather.com/forecasts/v1/daily/1day/208971?apikey=8COJAyesWeK8RWfdXyyCWAQAbcdvPeTQ')
+            fetch('/api/weather/')
               .then(response => response.json())
               .then(data => {
                 console.log('data', data)
               })
+
+            // fetch('/api/users/1')
           }
         }
     }

@@ -8,6 +8,9 @@ install vue
 - composer require laravel/ui
 - php artisan ui vue
 
+install zttp
+- composer require kitetail/zttp
+
 ## how to run
 
 npm i
