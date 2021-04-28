@@ -36,7 +36,7 @@
           :class="{ 'mt-8' : index > 0}"
         >
           <div class="w-1/6 text-lg text-gray-200">
-            MON
+            {{ toDayOfWeek(day.Date) }}
           </div>
           <div class="w-4/6 px-4 flex items-center">
             <img :src=weatherIcon(day.Day.Icon) alt="current-temprature" class="h-full">
@@ -102,6 +102,12 @@
           },
           weatherIcon(stringIcon) {
             return '/icons/weather-icon/icon' + stringIcon + '.png';
+          },
+          toDayOfWeek(timestamp) {
+            const newDate = new Date(timestamp)
+            const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+
+            return days[newDate.getDay()]
           }
         }
     }
