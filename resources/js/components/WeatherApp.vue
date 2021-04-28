@@ -63,7 +63,16 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            this.fetchData()
+        },
+        methods: {
+          fetchData() {
+            fetch('https://cors-anywhere.herokuapp.com/http://dataservice.accuweather.com/forecasts/v1/daily/1day/208971?apikey=8COJAyesWeK8RWfdXyyCWAQAbcdvPeTQ')
+              .then(response => response.json())
+              .then(data => {
+                console.log('data', data)
+              })
+          }
         }
     }
 </script>
