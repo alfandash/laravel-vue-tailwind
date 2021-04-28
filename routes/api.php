@@ -29,7 +29,7 @@ Route::get('weather', function () {
   $apiKey = config('services.accuweather.key');
   $locationId = request('location');
 
-  $response = Zttp::get("http://dataservice.accuweather.com/forecasts/v1/daily/1day/$locationId?apikey=$apiKey", '');
+  $response = Zttp::get("http://dataservice.accuweather.com/currentconditions/v1/$locationId?apikey=$apiKey&details=true", '');
 
   return $response->json();
 });

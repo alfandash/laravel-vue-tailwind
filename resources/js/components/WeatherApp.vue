@@ -8,18 +8,18 @@
         <div class="flex items-center">
           <div>
             <div class="text-6xl font-semibold">
-              8 C
+              {{ currentTemprature.actual }} {{ currentTemprature.actualUnit}}
             </div>
-            <div>
-              feels like 2 C
+            <div class="mt-2">
+              feels like {{ currentTemprature.feels }} {{ currentTemprature.feelsUnit }}
             </div>
           </div>
           <div>
             <div class="mx-5">
               <div class="font-semibold">
-                cloudy
+                {{ currentTemprature.summary }}
               </div>
-              <div>Toronto, Canada</div>
+              <div>{{ location.name }}</div>
             </div>
           </div>
         </div>
@@ -67,6 +67,14 @@
         },
         data() {
           return {
+            currentTemprature: {
+              actual: '',
+              actualUnit: '',
+              feels: '',
+              feelsUnit: '',
+              summary: '',
+              icon: '',
+            },
             location: {
               name: 'Jakarta, Indonesia',
               location_id: 208971,
@@ -79,6 +87,12 @@
               .then(response => response.json())
               .then(data => {
                 console.log(data)
+
+                this.currentTemprature.actual = data[0].Temperature.Metric.Value;
+                this.currentTemprature.actualUnit = data[0].Temperature.Metric.Unit;
+                this.currentTemprature.feels = data[0].RealFeelTemperature.Metric.Value;
+                this.currentTemprature.feelsUnit = data[0].RealFeelTemperature.Metric.Unit;
+                this.currentTemprature.summary = data[0].WeatherText;
               })
 
             // fetch('/api/users/1')
