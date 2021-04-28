@@ -70,7 +70,7 @@
             fetch('/api/weather/')
               .then(response => response.json())
               .then(data => {
-                console.log('data', data)
+                console.log(data)
               })
 
             // fetch('/api/users/1')

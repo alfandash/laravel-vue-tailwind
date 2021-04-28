@@ -28,7 +28,7 @@ Route::get('weather', function () {
 
   // $apiKey = config('services.accuweather.key');
 
-  $response = Zttp::get('https://cors-anywhere.herokuapp.com/http://dataservice.accuweather.com/forecasts/v1/daily/1day/208971?apikey=8COJAyesWeK8RWfdXyyCWAQAbcdvPeTQ');
+  $response = Zttp::get('http://dataservice.accuweather.com/forecasts/v1/daily/1day/208971?apikey=8COJAyesWeK8RWfdXyyCWAQAbcdvPeTQ', '');
 
   return $response->json();
 });
