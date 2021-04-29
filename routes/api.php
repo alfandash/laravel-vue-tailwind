@@ -44,3 +44,13 @@ Route::get('weather/forecasts/daily/5day', function() {
 
   return $response->json();
 });
+
+Route::get('weather/search/location', function() {
+
+  $apiKey = config('services.accuweather.key');
+  $search = request('search');
+
+  $response = Zttp::get("http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=$apiKey&q=$search", '');
+
+  return $response->json();
+});
