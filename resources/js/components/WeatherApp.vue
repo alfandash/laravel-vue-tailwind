@@ -32,6 +32,11 @@
         </div>
       </form>
     </div>
+    <div class="contoh-colom flex w-full bg-green-900">
+      <button class="button-sekian w-2/12 bg-gray-700 text-white border rounded border-gray-50 m-3 hover:bg-transparent">
+        contoh button
+      </button>
+    </div>
     <div class="weather-container font-sans w-128 max-w-lg overflow-hidden bg-gray-900 rounded-lg shadow-lg mt-4">
       <div class="current-weather flex items-center justify-between px-6 py-8">
         <div class="flex items-center">
